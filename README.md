@@ -1,5 +1,6 @@
 # ACL-NOT_ZELDA
 Idrissa CONDE 
 aICHA oUEDRAOGO
-Taher Bazzazi \n
+Taher Bazzazi 
 Meriam Jardak
+Saif eddine elamri

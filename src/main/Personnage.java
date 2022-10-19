@@ -1,3 +1,4 @@
+package main;
 public class Personnage {
 
 	private int pointsVie;

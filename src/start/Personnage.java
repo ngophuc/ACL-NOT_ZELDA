@@ -1,12 +1,18 @@
-package main;
+package start;
+
+import engine.Controller;
+import engine.GamePanel;
+
 public class Personnage {
 
 	private int pointsVie;
-	private Case position;
+	public int positionX;
+	public int positionY;
 	
-	public Personnage(int pointsVie, Case position) {
+	public Personnage(int pointsVie, int positionX,int positionY) {
 		this.pointsVie = pointsVie;
-		this.position = position;
+		this.positionX = positionX;
+		this.positionY = positionX;
 	}
 
 	public int getPointsVie() {
@@ -17,27 +23,28 @@ public class Personnage {
 		this.pointsVie = pointsVie;
 	}
 
-	public Case getPosition() {
-		return position;
-	}
+	/*
+	 * public Case getPosition() { return position; }
+	 */
 
-	public void setPosition(Case position) {
-		this.position = position;
-	}
+//	public void setPosition(Case position) {
+//		this.position = position;
+//	}
+	
 	//setPosition peut nous aider a la fonction de teleport
 	//qlq setters et getters doivent etre reajoutés au diagram
 	
 	public void deplacerHaut(){
-		position.setPositionY(position.getPositionY()-1);
+		this.positionY -= GamePanel.pixelSize;
 	}
 	public void deplacerBas(){
-		position.setPositionY(position.getPositionY()+1);
+		this.positionY += GamePanel.pixelSize;
 	}
 	public void deplacerGauche(){
-		position.setPositionX(position.getPositionX()-1);
+		this.positionX -= GamePanel.pixelSize;
 	}
 	public void deplacerDroite(){
-		position.setPositionX(position.getPositionX()+1);
+		this.positionX += GamePanel.pixelSize;
 	}
 	//setter a ajouter dans la classe case
 
@@ -62,10 +69,10 @@ public class Personnage {
 	}
 	//nom à changer
 	
-	public void testCase() {
-		if (position instanceof(/*****/));
-		//*****
-	}
+//	public void testCase() {
+//		if (position instanceof(/*****/));
+//		//*****
+//	}
 	
 	
 }

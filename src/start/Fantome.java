@@ -1,4 +1,4 @@
-package main;
+package start;
 
 public class Fantome extends Monstre {
 	

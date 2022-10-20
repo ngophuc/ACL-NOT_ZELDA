@@ -6,4 +6,5 @@
  *
  */
 module NOT_Zelda {
+	requires java.desktop;
 }

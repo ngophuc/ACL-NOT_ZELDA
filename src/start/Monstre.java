@@ -1,9 +1,9 @@
 package start;
 
 public class Monstre extends Personnage {
-	
-public Monstre(int pointsVie, Case position) {
-		super(pointsVie,position);
+	// change of case position parameter to two parameter positionx and positiony
+	public Monstre(int pointsVie, int positionx,int positiony) {
+			super(pointsVie,positionx,positiony);
 	}	
 
 public void deplacerAleatoire() {

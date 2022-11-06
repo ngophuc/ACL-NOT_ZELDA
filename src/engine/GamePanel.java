@@ -4,19 +4,27 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-
+//added
+import start.Labyrinthe;
+//added
 import javax.swing.JPanel;
 
 import start.Hero;
+import start.Labyrinthe;
 
 public class GamePanel extends JPanel implements Runnable{
 	
-	public final static int pixelSize = 40;
-	final int horizontalPixels =20;
-	final int verticalPixals =20;
+	public final static int pixelSize = 48; //changed to 48
+	public int horizontalPixels =16; //changed to 16 + added visibility public+ remove of final
+	public int verticalPixals =12; //changed to 12 + added visibility public + remove of final
 	final int screenWidth = pixelSize*horizontalPixels;
 	final int screenHeight = pixelSize*verticalPixals;
 	
+	//added
+		Labyrinthe labyrinthe=new Labyrinthe(this);
+	//added
+	
+		
 	Thread thread;
 	Controller Control= new Controller();
 	Hero player1 = new Hero(this,Control);
@@ -59,7 +67,9 @@ public class GamePanel extends JPanel implements Runnable{
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		Graphics2D g2 = (Graphics2D)g;
-		
+		//added
+		labyrinthe.draw(g2);
+		//added
 		player1.draw(g2);
 		g2.dispose();
 		

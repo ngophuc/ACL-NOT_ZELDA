@@ -1,10 +1,11 @@
 package start;
 
 public class Fantome extends Monstre {
-	
-public Fantome (int pointsVie, Case position) {
-		super(pointsVie,position);
-	}	
+	// change of case position parameter to two parameter positionx and positiony
+
+	public Fantome (int pointsVie, int positionx,int positiony) {
+			super(pointsVie,positionx,positiony);
+	}
 
 public void traverserMur() {
 	//*******

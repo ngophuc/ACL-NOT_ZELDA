@@ -1,51 +1,149 @@
 package start;
 
+import java.awt.Graphics2D;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+
+import javax.imageio.ImageIO;
+
+import engine.GamePanel;
+
 public class Labyrinthe {
 	
-	private int TailleX;
-	private int TailleY;
-	private ArrayList<Case> grille;
-	
-	
-	public Labyrinthe(int nb_cases_x, int nb_cases_y, Interaction interaction)
-    {
-		// Cree un labyrinthe de longueur et de hauteur passees en parametre avec une sortie graphique interaction.
-		this.TailleX=nb_cases_x;
-		this.TailleY=nb_cases_y;	
-    }
+	// change the two attributes TailleX and TailleY to one attribute GamePanel
+		GamePanel gp;
+		Cases[] grille;
+		int mapTileNum[][];
+		
+		
+		
+		public Labyrinthe(GamePanel gp)
+		{
+			this.gp=gp;
+			grille=new Cases[10];
+			mapTileNum= new int[gp.horizontalPixels][gp.verticalPixals];
+			getTileImage();
+			loadMap("/maps/map01.txt");
+			
+		}
+		
 	
 	
 	public int getTailleX()
 	{// Retourne la longueur du labyrinthe en nombre de cases.
-		return TailleX;
+		return gp.horizontalPixels;
 	}
 	
 	public int getTailleY()
 	{// Retourne la largeur du labyrinthe en nombre de cases.
-		return TailleY;	
+		return gp.verticalPixals;	
 	}
-	public int setTailleX(int x)
+	public void setTailleX(int x)
 	{// Modifie la longueur du labyrinthe en nombre de cases.
-		this.TailleX=x;
+		this.gp.horizontalPixels=x;
 	}
 	
-	public int setTailleY(int y)
+	public void setTailleY(int y)
 	{// Modifie la largeur du labyrinthe en nombre de cases.
-		this.TailleY=y;	
+		this.gp.verticalPixals=y;	
 	}
-	public boolean	existe_t_il (Case coordonnees)
+	
+	//To see later
+	public boolean	existe_t_il (int coordonnex,int coordonney)
 	{
 	//Indique si la case passee en parametre est libre ou pas
+		return true;
 	}
 	
 	public float getDepatureX()
 	{
     // Retourne l'abscisse de la case de sortie dans le labyrinthe
+		return 0;
 	}
 	
 	public float getDepatureY()
 	{
     // Retourne l'ordonnee de la case de sortie dans le labyrinthe
+		return 0;
 	}
 	
+	
+	
+	//New methods
+	public void getTileImage()
+	{
+		try {
+			grille[0]=new Cases();
+			grille[0].image=ImageIO.read(getClass().getResourceAsStream("/grilles/Case.png"));
+			grille[1]=new Cases();
+			grille[1].image=ImageIO.read(getClass().getResourceAsStream("/grilles/Piege.png"));
+			grille[2]=new Cases();
+			grille[2].image=ImageIO.read(getClass().getResourceAsStream("/grilles/Tresor.png"));
+		
+		} catch(IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void loadMap(String filePath) {
+		
+		try {
+			InputStream is=getClass().getResourceAsStream(filePath);
+			BufferedReader br=new BufferedReader(new InputStreamReader(is));
+			
+			int col=0;
+			int row=0;
+			
+			while(col<gp.horizontalPixels && row <gp.verticalPixals)
+			{
+				String line=br.readLine();
+				
+				while(col<gp.horizontalPixels) {
+					String numbers[]=line.split(" ");
+					
+					int num=Integer.parseInt(numbers[col]);
+					
+					mapTileNum[col][row]=num;
+					col++;
+				}
+				
+				if (col ==gp.horizontalPixels) {
+					col=0;
+					row++;
+				}
+				
+				
+			}
+			br.close();
+	}catch(Exception e) {
+		}
+	}
+	
+	public void draw(Graphics2D g2)
+	{
+		
+		int col=0;
+		int row=0;
+		int x=0;
+		int y=0;
+		
+		while (col<gp.horizontalPixels && row< gp.verticalPixals) {
+			int tileNum=mapTileNum[col][row];
+			g2.drawImage(grille[tileNum].image,x,y,gp.pixelSize,gp.pixelSize,null);
+			col++;
+			x+=gp.pixelSize;
+			if (col == gp.horizontalPixels) {
+				col=0;
+				x=0;
+				row++;
+				y+=gp.pixelSize;
+			}
+
+		}
+		
+	
+}
 }

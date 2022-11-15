@@ -41,9 +41,8 @@ public class Hero extends Personnage {
 		}		
 	}
 	
-	public void draw(Graphics2D g2) {
+	public void draw(Graphics2D g2) {     //affichage
 	g2.setColor(Color.white);
 	g2.fillOval(positionX, positionY, GamePanel.pixelSize, GamePanel.pixelSize);
-
 	}
-}
+
